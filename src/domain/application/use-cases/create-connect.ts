@@ -56,7 +56,7 @@ export class CreateAndConnectInstanceUseCase {
         apikey: this.apiKey,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ instanceName }),
+      body: JSON.stringify({ instanceName, integration: 'WHATSAPP-BAILEYS', qrCode: true}),
     })
 
     if (!response.ok) {

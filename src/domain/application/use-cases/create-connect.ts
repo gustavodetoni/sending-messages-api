@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Instance } from '../enterprise/entities/instance'
+import { Instance } from '../../enterprise/entities/instance'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 import { EnvService } from 'src/infra/env/env.service'
 

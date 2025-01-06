@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Instance } from '../enterprise/entities/instance'
+import { Instance } from '../../enterprise/entities/instance'
 import { EnvService } from 'src/infra/env/env.service'
 
 export type Contact = {

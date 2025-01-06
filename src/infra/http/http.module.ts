@@ -8,14 +8,21 @@ import { CreateAndConnectController } from './controllers/create-connect.control
 import { ConnectionStatusController } from './controllers/connection-status.controller'
 import { EnvService } from '../env/env.service'
 import { CheckConnectionStatusUseCase } from '@/domain/application/use-cases/check-connection'
+import { LogoutController } from './controllers/logout.controller'
+import { LogoutInstanceUseCase } from '@/domain/application/use-cases/logout-instance'
 
 @Module({
   imports: [HttpModuleAxios, EnvModule],
-  controllers: [CreateAndConnectController, ConnectionStatusController],
+  controllers: [
+    CreateAndConnectController,
+    ConnectionStatusController,
+    LogoutController,
+  ],
   providers: [
     EnvService,
     CreateAndConnectInstanceUseCase,
     SendMessagesUseCase,
+    LogoutInstanceUseCase,
     CheckConnectionStatusUseCase,
   ],
 })

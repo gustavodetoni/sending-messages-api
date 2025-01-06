@@ -1,5 +1,4 @@
 @baseUrl = http://localhost:3000
-@apiKey = OtEkEUntlyoQreCQCkPZGSoeiowtgjYA
 
 ### Create and Connect Instance
 POST {{baseUrl}}/create-and-connect

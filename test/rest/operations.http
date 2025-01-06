@@ -2,15 +2,15 @@
 @apiKey = OtEkEUntlyoQreCQCkPZGSoeiowtgjYA
 
 ### Create and Connect Instance
-POST {{baseUrl}}/instances/create-and-connect
+POST {{baseUrl}}/create-and-connect
 Content-Type: application/json
 
 {
-  "instanceName": "testInstance"
+  "instanceName": "gustavo"
 }
 
 ### Check Connection Status
-GET {{baseUrl}}/instances/connection-status/testInstance
+GET {{baseUrl}}/connection-status/gustavo
 
 ### Logout Instance
 DELETE {{baseUrl}}/instances/logout/testInstance

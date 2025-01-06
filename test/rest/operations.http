@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3000
+@apiKey = OtEkEUntlyoQreCQCkPZGSoeiowtgjYA
+
+### Create and Connect Instance
+POST {{baseUrl}}/instances/create-and-connect
+Content-Type: application/json
+
+{
+  "instanceName": "gustavo"
+}
+
+### Send Messages
+POST {{baseUrl}}/instances/send-messages
+Content-Type: application/json
+
+{
+  "instanceName": "gustavo",
+  "contacts": [
+    {
+      "number": "5511974492361",
+      "name": "John Doe"
+    },
+    {
+      "number": "5511974492361",
+      "name": "Jane Smith"
+    }
+  ],
+  "messages": [
+    "Bom dia @name",
+    "Teste de mensagem!!"
+  ]
+}
+

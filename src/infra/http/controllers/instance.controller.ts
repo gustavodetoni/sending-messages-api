@@ -1,14 +1,15 @@
-import { Controller, Post, Body, HttpServer } from '@nestjs/common'
+import { Controller, Post, Body } from '@nestjs/common'
 import { CreateAndConnectInstanceUseCase } from '@/domain/application/use-cases/create-connect'
 import { SendMessagesUseCase } from '../../../domain/application/use-cases/send-messages'
 import { InstancePresenter } from '../presenters/instance.presenter'
+import { HttpService } from '@nestjs/axios'
 
 @Controller('instances')
 export class InstanceController {
   constructor(
     private createAndConnectInstance: CreateAndConnectInstanceUseCase,
     private sendMessage: SendMessagesUseCase,
-    private httpService: HttpServer,
+    private httpService: HttpService,
   ) {}
 
   @Post('create-and-connect')

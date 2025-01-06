@@ -9,4 +9,12 @@ export class EnvService {
   get<T extends keyof typeof env>(key: T) {
     return this.config.get(key, { infer: true })
   }
+
+  getApiKey() {
+    return this.get('API_KEY')
+  }
+
+  getBaseUrl() {
+    return this.get('BASE_URL')
+  }
 }

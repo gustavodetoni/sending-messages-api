@@ -1,21 +1,22 @@
-import { Injectable, Inject } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { EnvService } from '../../../infra/env/env.service'
 import { Either, left, right } from '../../../core/either'
 import { ResourceNotFound } from '../../../core/errors/resource-not-found'
+import * as csv from 'csv-parse'
 
 export type Contact = {
-  number: string
   name: string
+  phone: string
 }
 
-export type SendMessagesRequest = {
+export type ProcessCsvAndSendMessagesRequest = {
   instanceName: string
-  contacts: Contact[]
+  csvBuffer: Buffer
   messages: string[]
   delay: number
 }
 
-export type SendMessagesResponse = Either<
+export type ProcessCsvAndSendMessagesResponse = Either<
   ResourceNotFound,
   {
     results: any[]
@@ -23,7 +24,7 @@ export type SendMessagesResponse = Either<
 >
 
 @Injectable()
-export class SendMessagesUseCase {
+export class ProcessCsvAndSendMessagesUseCase {
   private readonly apiKey: string
   private readonly baseUrl: string
 
@@ -34,11 +35,12 @@ export class SendMessagesUseCase {
 
   async execute({
     instanceName,
-    contacts,
+    csvBuffer,
     messages,
     delay,
-  }: SendMessagesRequest): Promise<SendMessagesResponse> {
+  }: ProcessCsvAndSendMessagesRequest): Promise<ProcessCsvAndSendMessagesResponse> {
     try {
+      const contacts = await this.parseCsv(csvBuffer)
       const results = []
 
       for (const contact of contacts) {
@@ -49,7 +51,7 @@ export class SendMessagesUseCase {
           )
           const result = await this.sendMessage(
             instanceName,
-            contact.number,
+            contact.phone,
             personalizedMessage,
             delay,
           )
@@ -59,8 +61,29 @@ export class SendMessagesUseCase {
 
       return right({ results })
     } catch (error) {
-      return left(new ResourceNotFound('Failed to send messages'))
+      return left(
+        new ResourceNotFound('Failed to process CSV and send messages'),
+      )
     }
+  }
+
+  private async parseCsv(csvBuffer: Buffer): Promise<Contact[]> {
+    return new Promise((resolve, reject) => {
+      const contacts: Contact[] = []
+      csv
+        .parse(csvBuffer, {
+          columns: true,
+          skip_empty_lines: true,
+        })
+        .on('data', (row) => {
+          contacts.push({
+            name: row.name,
+            phone: row.phone,
+          })
+        })
+        .on('end', () => resolve(contacts))
+        .on('error', (error) => reject(error))
+    })
   }
 
   private async sendMessage(

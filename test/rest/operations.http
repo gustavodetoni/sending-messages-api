@@ -6,28 +6,58 @@ POST {{baseUrl}}/instances/create-and-connect
 Content-Type: application/json
 
 {
-  "instanceName": "gustavo"
+  "instanceName": "testInstance"
 }
 
+### Check Connection Status
+GET {{baseUrl}}/instances/connection-status/testInstance
+
+### Logout Instance
+DELETE {{baseUrl}}/instances/logout/testInstance
+
+### Restart Instance
+POST {{baseUrl}}/instances/restart/testInstance
+
 ### Send Messages
-POST {{baseUrl}}/instances/send-messages
+POST {{baseUrl}}/instances/send-messages/testInstance
 Content-Type: application/json
 
 {
-  "instanceName": "gustavo",
   "contacts": [
     {
-      "number": "5511974492361",
+      "number": "5511999999999",
       "name": "John Doe"
     },
     {
-      "number": "5511974492361",
+      "number": "5511888888888",
       "name": "Jane Smith"
     }
   ],
   "messages": [
-    "Bom dia @name",
-    "Teste de mensagem!!"
-  ]
+    "Hello @name, how are you?",
+    "Don't forget our meeting, @name!"
+  ],
+  "delay": 10
 }
+
+### Upload CSV and Send Messages
+POST {{baseUrl}}/instances/upload-csv-and-send/testInstance
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="contacts.csv"
+Content-Type: text/csv
+
+name,phone
+John Doe,5511999999999
+Jane Smith,5511888888888
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="messages"
+
+["Hello @name, how are you?", "Don't forget our meeting, @name!"]
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="delay"
+
+10
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 

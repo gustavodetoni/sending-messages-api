@@ -27,7 +27,7 @@ export class SendMessagesController {
   constructor(private sendMessage: SendMessagesUseCase) {}
 
   @Post()
-  async sendMessages(
+  async handler(
     @Param('instanceName') instanceName: string,
     @Body(new ZodValidationPipe(sendMessagesBodySchema))
     body: { contacts: any[]; messages: string[]; delay: number },

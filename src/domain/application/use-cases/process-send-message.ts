@@ -112,6 +112,6 @@ export class ProcessCsvAndSendMessagesUseCase {
   }
 
   private replaceNameInMessage(message: string, name: string): string {
-    return message.replace(/@name/g, name)
+    return message.replace(/%name%/g, name)
   }
 }

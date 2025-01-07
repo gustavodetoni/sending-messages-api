@@ -5,11 +5,11 @@ import { EnvService } from '../../../infra/env/env.service'
 import { Either, left, right } from '../../../core/either'
 import { ResourceNotFound } from '../../../core/errors/resource-not-found'
 
-interface CreateAndConnectInstanceRequest {
+export type CreateAndConnectInstanceRequest = {
   instanceName: string
 }
 
-type CreateAndConnectInstanceResponse = Either<
+export type CreateAndConnectInstanceResponse = Either<
   ResourceNotFound,
   {
     instance: Instance
@@ -32,6 +32,7 @@ export class CreateAndConnectInstanceUseCase {
   async execute({ instanceName }: CreateAndConnectInstanceRequest): Promise<CreateAndConnectInstanceResponse> {
     try {
       const createResponse = await this.createInstance(instanceName)
+      
       const instance = Instance.create({
         name: instanceName,
         qrCode: createResponse.qrcode,

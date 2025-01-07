@@ -89,6 +89,6 @@ export class SendMessagesUseCase {
   }
 
   private replaceNameInMessage(message: string, name: string): string {
-    return message.replace(/@name/g, name)
+    return message.replace(/%name%/g, name)
   }
 }

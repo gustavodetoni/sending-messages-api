@@ -13,7 +13,7 @@ export class ConnectionStatusController {
   constructor(private checkConnectionStatus: CheckConnectionStatusUseCase) {}
 
   @Get()
-  async getConnectionStatus(@Param('instanceName') instanceName: string) {
+  async handler(@Param('instanceName') instanceName: string) {
     const response = await this.checkConnectionStatus.execute({
       instanceName,
     })

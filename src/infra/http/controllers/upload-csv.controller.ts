@@ -27,7 +27,7 @@ export class UploadCsvController {
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  async uploadCsvAndSend(
+  async handler(
     @Param('instanceName') instanceName: string,
     @UploadedFile() file: Express.Multer.File,
     @Body(new ZodValidationPipe(csvUploadBodySchema))

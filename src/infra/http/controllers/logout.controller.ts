@@ -13,7 +13,7 @@ export class LogoutController {
   constructor(private logoutInstance: LogoutInstanceUseCase) {}
 
   @Delete()
-  async logout(@Param('instanceName') instanceName: string) {
+  async handler(@Param('instanceName') instanceName: string) {
     const response = await this.logoutInstance.execute({
       instanceName,
     })

@@ -12,7 +12,7 @@ Content-Type: application/json
 GET {{baseUrl}}/connection-status/gustavo
 
 ### Reconnect Instance
-POST {{baseUrl}}/reconnect/teste2
+GET {{baseUrl}}/reconnect/teste2
 
 ### Logout Instance
 DELETE {{baseUrl}}/logout/teste2
@@ -28,15 +28,15 @@ Content-Type: application/json
       "name": "John Doe"
     },
     {
-      "number": "5511974492361",
-      "name": "Jane Smith"
+      "number": "5511999999999",
+      "name": "John Doe"
     }
   ],
   "messages": [
-    "Hello @name",
+    "Hello %name%",
     "Vai se fude"
   ],
-  "delay": 1000 //milessegundos
+  "delay": 1000 
 }
 
 ### Upload CSV and Send Messages

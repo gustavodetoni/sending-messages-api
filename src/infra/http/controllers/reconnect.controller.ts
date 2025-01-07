@@ -13,7 +13,7 @@ export class RestartController {
   constructor(private restartInstance: RestartInstanceUseCase) {}
 
   @Get()
-  async handle(@Param('instanceName') instanceName: string,) {
+  async handler(@Param('instanceName') instanceName: string,) {
     const response = await this.restartInstance.execute({
       instanceName,
     })

@@ -37,12 +37,10 @@ export class RestartInstanceUseCase {
         },
       )
 
-      if (!response.ok) {
-        throw new Error('Failed to restart instance')
-      }
-
       const data = await response.json()
-      return right({ success: true, qrcode: data.qrcode })
+      console.log(instanceName)
+
+      return right(data.instance.message)
     } catch (error) {
       return left(new ResourceNotFound('Failed to restart instance'))
     }

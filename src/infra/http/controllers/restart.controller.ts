@@ -22,8 +22,7 @@ export class RestartController {
 
   @Post()
   async handler(
-    @Param('instanceName') instanceName: string,
-    @Body() body: RestartSchema,
+    @Param('instanceName') instanceName: string, 
   ) {
     const response = await this.restartInstance.execute({
       instanceName,

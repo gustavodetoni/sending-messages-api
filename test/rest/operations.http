@@ -12,10 +12,10 @@ Content-Type: application/json
 GET {{baseUrl}}/connection-status/gustavo
 
 ### Logout Instance
-DELETE {{baseUrl}}/instances/logout/testInstance
+DELETE {{baseUrl}}/logout/gustavo
 
 ### Restart Instance
-POST {{baseUrl}}/instances/restart/testInstance
+POST {{baseUrl}}/restart/gustavo
 
 ### Send Messages
 POST {{baseUrl}}/instances/send-messages/testInstance

@@ -10,6 +10,8 @@ import { EnvService } from '../env/env.service'
 import { CheckConnectionStatusUseCase } from '@/domain/application/use-cases/check-connection'
 import { LogoutController } from './controllers/logout.controller'
 import { LogoutInstanceUseCase } from '@/domain/application/use-cases/logout-instance'
+import { RestartController } from './controllers/restart.controller'
+import { RestartInstanceUseCase } from '@/domain/application/use-cases/restart-instance'
 
 @Module({
   imports: [HttpModuleAxios, EnvModule],
@@ -17,11 +19,13 @@ import { LogoutInstanceUseCase } from '@/domain/application/use-cases/logout-ins
     CreateAndConnectController,
     ConnectionStatusController,
     LogoutController,
+    RestartController,
   ],
   providers: [
     EnvService,
     CreateAndConnectInstanceUseCase,
     SendMessagesUseCase,
+    RestartInstanceUseCase,
     LogoutInstanceUseCase,
     CheckConnectionStatusUseCase,
   ],

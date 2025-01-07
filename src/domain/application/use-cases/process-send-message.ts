@@ -6,7 +6,7 @@ import * as csv from 'csv-parse'
 
 export type Contact = {
   name: string
-  phone: string
+  number: string
 }
 
 export type ProcessCsvAndSendMessagesRequest = {
@@ -51,7 +51,7 @@ export class ProcessCsvAndSendMessagesUseCase {
           )
           const result = await this.sendMessage(
             instanceName,
-            contact.phone,
+            contact.number,
             personalizedMessage,
             delay,
           )
@@ -78,7 +78,7 @@ export class ProcessCsvAndSendMessagesUseCase {
         .on('data', (row) => {
           contacts.push({
             name: row.name,
-            phone: row.phone,
+            number: row.phone,
           })
         })
         .on('end', () => resolve(contacts))

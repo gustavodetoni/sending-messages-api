@@ -7,14 +7,6 @@ export type RestartInstanceRequest = {
   instanceName: string
 }
 
-export type RestartInstanceResponse = Either<
-  ResourceNotFound,
-  {
-    success: boolean
-    qrcode?: string
-  }
->
-
 @Injectable()
 export class RestartInstanceUseCase {
   private readonly apiKey: string
@@ -27,7 +19,7 @@ export class RestartInstanceUseCase {
 
   async execute({
     instanceName,
-  }: RestartInstanceRequest): Promise<RestartInstanceResponse> {
+  }: RestartInstanceRequest): Promise<Either<ResourceNotFound, void>> {
     try {
       const response = await fetch(
         `${this.baseUrl}/instance/restart/${instanceName}`,
@@ -36,11 +28,9 @@ export class RestartInstanceUseCase {
           headers: { apikey: this.apiKey },
         },
       )
-
+   
       const data = await response.json()
-      console.log(instanceName)
-
-      return right(data.instance.message)
+      return right(data)
     } catch (error) {
       return left(new ResourceNotFound('Failed to restart instance'))
     }

@@ -5,16 +5,10 @@ import {
   NotFoundException,
   BadRequestException,
   Body,
+  UsePipes,
 } from '@nestjs/common'
 import { RestartInstanceUseCase } from '../../../domain/application/use-cases/restart-instance'
-import { z } from 'zod'
 import { ResourceNotFound } from '@/core/errors/resource-not-found'
-
-const restartSchema = z.object({
-  instanceName: z.string(),
-})
-
-type RestartSchema = z.infer<typeof restartSchema>
 
 @Controller('/restart/:instanceName')
 export class RestartController {
@@ -22,7 +16,7 @@ export class RestartController {
 
   @Post()
   async handler(
-    @Param('instanceName') instanceName: string, 
+    @Param('instanceName') instanceName: string,
   ) {
     const response = await this.restartInstance.execute({
       instanceName,
@@ -38,10 +32,7 @@ export class RestartController {
           throw new BadRequestException(error.message)
       }
     }
-    const instance = response.value
 
-    return {
-      instance,
-    }
+    return response.value
   }
 }

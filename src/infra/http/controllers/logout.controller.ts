@@ -8,11 +8,11 @@ import {
 import { LogoutInstanceUseCase } from '../../../domain/application/use-cases/logout-instance'
 import { ResourceNotFound } from '@/core/errors/resource-not-found'
 
-@Controller('/logout:instanceName')
+@Controller('/logout/:instanceName')
 export class LogoutController {
   constructor(private logoutInstance: LogoutInstanceUseCase) {}
 
-  @Delete('')
+  @Delete()
   async logout(@Param('instanceName') instanceName: string) {
     const response = await this.logoutInstance.execute({
       instanceName,

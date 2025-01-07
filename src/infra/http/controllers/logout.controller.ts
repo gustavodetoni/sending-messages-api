@@ -28,5 +28,10 @@ export class LogoutController {
           throw new BadRequestException(error.message)
       }
     }
+    const logoutInstance = response.value
+
+    return {
+      logoutInstance,
+    }
   }
 }

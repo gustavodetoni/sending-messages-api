@@ -37,13 +37,10 @@ export class LogoutInstanceUseCase {
           },
         },
       )
-
-      if (!response.ok) {
-        throw new Error('Failed to logout instance')
-      }
-
       const data = await response.json()
-      return right({ success: true })
+      
+      return right(data)
+
     } catch (error) {
       return left(new ResourceNotFound('Failed to logout instance'))
     }

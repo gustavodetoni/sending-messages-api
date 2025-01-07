@@ -1,23 +1,19 @@
 import {
   Controller,
-  Post,
   Param,
   NotFoundException,
   BadRequestException,
-  Body,
-  UsePipes,
+  Get,
 } from '@nestjs/common'
-import { RestartInstanceUseCase } from '../../../domain/application/use-cases/restart-instance'
+import { RestartInstanceUseCase } from '../../../domain/application/use-cases/reconnect-instance'
 import { ResourceNotFound } from '@/core/errors/resource-not-found'
 
-@Controller('/restart/:instanceName')
+@Controller('/reconnect/:instanceName')
 export class RestartController {
   constructor(private restartInstance: RestartInstanceUseCase) {}
 
-  @Post()
-  async handler(
-    @Param('instanceName') instanceName: string,
-  ) {
+  @Get()
+  async handle(@Param('instanceName') instanceName: string,) {
     const response = await this.restartInstance.execute({
       instanceName,
     })
@@ -32,7 +28,10 @@ export class RestartController {
           throw new BadRequestException(error.message)
       }
     }
+    const restartInstance = response.value
 
-    return response.value
+    return {
+      restartInstance,
+    }
   }
 }

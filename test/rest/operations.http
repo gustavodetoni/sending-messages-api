@@ -11,19 +11,11 @@ Content-Type: application/json
 ### Check Connection Status
 GET {{baseUrl}}/connection-status/gustavo
 
-### Restart Instance
-POST {{baseUrl}}/restart/gustavo
+### Reconnect Instance
+POST {{baseUrl}}/reconnect/teste2
 
 ### Logout Instance
-DELETE {{baseUrl}}/logout/gustavo
-
-
-
-
-
-
-
-
+DELETE {{baseUrl}}/logout/teste2
 
 ### Send Messages
 POST {{baseUrl}}/send-messages/teste2

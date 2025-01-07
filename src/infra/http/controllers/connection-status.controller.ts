@@ -12,7 +12,7 @@ import { ResourceNotFound } from '@/core/errors/resource-not-found'
 export class ConnectionStatusController {
   constructor(private checkConnectionStatus: CheckConnectionStatusUseCase) {}
 
-  @Get('')
+  @Get()
   async getConnectionStatus(@Param('instanceName') instanceName: string) {
     const response = await this.checkConnectionStatus.execute({
       instanceName,

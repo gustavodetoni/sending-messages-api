@@ -5,7 +5,7 @@ import {
   BadRequestException,
   Get,
 } from '@nestjs/common'
-import { RestartInstanceUseCase } from '../../../domain/application/use-cases/reconnect-instance'
+import { RestartInstanceUseCase } from '@/domain/application/use-cases/reconnect-instance'
 import { ResourceNotFound } from '@/core/errors/resource-not-found'
 
 @Controller('/reconnect/:instanceName')

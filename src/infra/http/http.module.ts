@@ -14,9 +14,10 @@ import { RestartInstanceUseCase } from '@/domain/application/use-cases/reconnect
 import { SendMessagesController } from './controllers/send-messages.controller'
 import { UploadCsvController } from './controllers/upload-csv.controller'
 import { ProcessCsvAndSendMessagesUseCase } from '@/domain/application/use-cases/process-send-message'
+import { EvolutionModule } from '../evolution/evolution.module'
 
 @Module({
-  imports: [HttpModuleAxios, EnvModule],
+  imports: [HttpModuleAxios, EvolutionModule, EnvModule],
   controllers: [
     CreateAndConnectController,
     ConnectionStatusController,

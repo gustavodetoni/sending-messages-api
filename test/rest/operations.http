@@ -5,14 +5,14 @@ POST {{baseUrl}}/create-and-connect
 Content-Type: application/json
 
 {
-  "instanceName": "gustavo"
+  "instanceName": "testeapagar"
 }
 
 ### Check Connection Status
-GET {{baseUrl}}/connection-status/gustavo
+GET {{baseUrl}}/connection-status/testeapagar
 
 ### Reconnect Instance
-GET {{baseUrl}}/reconnect/teste2
+GET {{baseUrl}}/reconnect/gustavo
 
 ### Logout Instance
 DELETE {{baseUrl}}/logout/teste2
@@ -28,7 +28,7 @@ Content-Type: application/json
       "name": "John Doe"
     },
     {
-      "number": "5511999999999",
+      "number": "5511974492361",
       "name": "John Doe"
     }
   ],
@@ -41,22 +41,5 @@ Content-Type: application/json
 
 ### Upload CSV and Send Messages
 POST {{baseUrl}}/upload-csv-and-send/teste2
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="contacts.csv"
-Content-Type: text/csv
-
-name,number
-John Doe,5511974492361
-Jane Smith,5511974492361
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="messages"
-
-["Hello @name", "Oloco gordao"]
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="delay"
-
-1000
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
+//upload de csv, messages[], e delay
 

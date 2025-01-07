@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { EnvService } from '../../../infra/env/env.service'
-import { Either, left, right } from '../../../core/either'
-import { ResourceNotFound } from '../../../core/errors/resource-not-found'
+import { Either, left, right } from '@/core/either'
+import { ResourceNotFound } from '@/core/errors/resource-not-found'
+import { InstanceConnectService } from '@/infra/evolution/instance-connect'
 
 export type RestartInstanceRequest = {
   instanceName: string
@@ -10,39 +10,27 @@ export type RestartInstanceRequest = {
 export type RestartInstanceResponse = Either<
   ResourceNotFound,
   {
-    success: boolean
+    success: string
   }
 >
 
 @Injectable()
 export class RestartInstanceUseCase {
-  private readonly apiKey: string
-  private readonly baseUrl: string
-
-  constructor(private readonly envService: EnvService) {
-    this.apiKey = this.envService.getApiKey()
-    this.baseUrl = this.envService.getBaseUrl()
-  }
+  constructor(
+    private readonly instanceConnectService: InstanceConnectService,
+  ) {}
 
   async execute({
     instanceName,
   }: RestartInstanceRequest): Promise<RestartInstanceResponse> {
     try {
-      const response = await fetch(
-        `${this.baseUrl}/instance/connect/${instanceName}`,
-        {
-          method: 'GET',
-          headers: {
-            apikey: this.apiKey,
-          },
-        },
-      )
-      const data = await response.json()
-
-      return right(data)
-
+      const data =
+        await this.instanceConnectService.restartInstance(instanceName)
+      return right({
+        success: data,
+      })
     } catch (error) {
-      return left(new ResourceNotFound('Failed to restart instance'))
+      return left(new ResourceNotFound('Instance'))
     }
   }
 }

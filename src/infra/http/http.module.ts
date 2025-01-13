@@ -12,8 +12,6 @@ import { LogoutInstanceUseCase } from '@/domain/application/use-cases/logout-ins
 import { RestartController } from './controllers/reconnect.controller'
 import { RestartInstanceUseCase } from '@/domain/application/use-cases/reconnect-instance'
 import { SendMessagesController } from './controllers/send-messages.controller'
-import { UploadCsvController } from './controllers/upload-csv.controller'
-import { ProcessCsvAndSendMessagesUseCase } from '@/domain/application/use-cases/process-send-message'
 import { EvolutionModule } from '../evolution/evolution.module'
 
 @Module({
@@ -24,7 +22,6 @@ import { EvolutionModule } from '../evolution/evolution.module'
     LogoutController,
     RestartController,
     SendMessagesController,
-    UploadCsvController,
   ],
   providers: [
     EnvService,
@@ -32,7 +29,6 @@ import { EvolutionModule } from '../evolution/evolution.module'
     SendMessagesUseCase,
     SendMessagesUseCase,
     RestartInstanceUseCase,
-    ProcessCsvAndSendMessagesUseCase,
     LogoutInstanceUseCase,
     CheckConnectionStatusUseCase,
   ],

@@ -38,8 +38,3 @@ Content-Type: application/json
   ],
   "delay": 1000 
 }
-
-### Upload CSV and Send Messages
-POST {{baseUrl}}/upload-csv-and-send/teste2
-//upload de csv, messages[], e delay
-

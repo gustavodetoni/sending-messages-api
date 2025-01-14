@@ -10,7 +10,7 @@ export type FindContactsRequest = {
 export type FindContactsResponse = Either<
   ResourceNotFound,
   {
-    sucess: string
+    data: []
   }
 >
 
@@ -22,8 +22,9 @@ export class FindContactsUseCase {
   }: FindContactsRequest): Promise<FindContactsResponse> {
     try {
       const data = await this.findContactService.findContacts(instanceName)
+
       return right({
-        sucess: data,
+        data,
       })
     } catch (error) {
       return left(new ResourceNotFound('Contact'))

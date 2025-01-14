@@ -13,6 +13,8 @@ import { RestartController } from './controllers/reconnect.controller'
 import { RestartInstanceUseCase } from '@/domain/application/use-cases/reconnect-instance'
 import { SendMessagesController } from './controllers/send-messages.controller'
 import { EvolutionModule } from '../evolution/evolution.module'
+import { FindContactController } from './controllers/find-contacts.controller'
+import { FindContactsUseCase } from '@/domain/application/use-cases/find-contacts'
 
 @Module({
   imports: [HttpModuleAxios, EvolutionModule, EnvModule],
@@ -22,6 +24,7 @@ import { EvolutionModule } from '../evolution/evolution.module'
     LogoutController,
     RestartController,
     SendMessagesController,
+    FindContactController
   ],
   providers: [
     EnvService,
@@ -31,6 +34,7 @@ import { EvolutionModule } from '../evolution/evolution.module'
     RestartInstanceUseCase,
     LogoutInstanceUseCase,
     CheckConnectionStatusUseCase,
+    FindContactsUseCase
   ],
 })
 export class HttpModule {}

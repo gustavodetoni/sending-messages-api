@@ -6,6 +6,7 @@ import { LogoutInstanceService } from './logout-instance'
 import { InstanceConnectService } from './instance-connect'
 import { ConnectionStateService } from './fetch-state'
 import { EnvService } from '../env/env.service'
+import { FindContactsService } from './find-contacts'
 
 @Module({
   imports: [HttpModuleAxios],
@@ -15,12 +16,14 @@ import { EnvService } from '../env/env.service'
     LogoutInstanceService,
     InstanceConnectService,
     ConnectionStateService,
+    FindContactsService,
     EnvService,
   ],
   exports: [
     CreateInstanceService,
     SendTextService,
     LogoutInstanceService,
+    FindContactsService,
     InstanceConnectService,
     ConnectionStateService,
     EnvService,

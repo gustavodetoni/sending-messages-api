@@ -15,7 +15,7 @@ export type FindContactsResponse = Either<
 >
 
 @Injectable()
-export class FindContactUseCase {
+export class FindContactsUseCase {
   constructor(private readonly findContactService: FindContactsService) {}
   async execute({
     instanceName,

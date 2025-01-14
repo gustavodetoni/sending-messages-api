@@ -27,7 +27,6 @@ export class ConnectionStatusController {
         default:
           throw new BadRequestException(error.message)
       }
-      
     }
     const connectionStatus  = response.value
 
